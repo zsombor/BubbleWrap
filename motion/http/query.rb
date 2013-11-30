@@ -95,7 +95,7 @@ Cache policy: #{@cache_policy}, response: #{@response.inspect} >"
     log "##{@redirect_count} HTTP redirect_count: #{request.inspect} - #{self.description}"
 
     if @redirect_count >= 30
-      @response.error = NSError.errorWithDomain('BubbleWrap::HTTP', code:NSURLErrorHTTPTooManyRedirects, 
+      @response.error = NSError.errorWithDomain('BubbleWrap::HTTP', code:NSURLErrorHTTPTooManyRedirects,
                                                 userInfo:NSDictionary.dictionaryWithObject("Too many redirections",
                                                                                            forKey: NSLocalizedDescriptionKey))
       @response.error_message = @response.error.localizedDescription
@@ -166,7 +166,7 @@ Cache policy: #{@cache_policy}, response: #{@response.inspect} >"
   end
 
   def show_status_indicator(show)
-    if App.ios?
+    if App.ios? && options[:network_indicator] != false
       UIApplication.sharedApplication.networkActivityIndicatorVisible = show
     end
   end
